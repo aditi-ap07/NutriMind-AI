@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NutriMind AI - Smart Food Decision Assistant
 
-## Getting Started
+**Submission for the Food & Health App Challenge**
 
-First, run the development server:
+## Overview
+**NutriMind AI** is a production-grade, AI-powered web application designed to help individuals make better food choices, build healthier eating habits, and achieve their nutritional goals through intelligent context-aware reasoning. 
 
+## Chosen Vertical
+**Food & Health - AI Nutrition Assistant**
+We leveraged Google's Cloud Vision and Gemini APIs to create a frictionless experience where simply taking a photo or typing a message gives the user highly personalized, goal-oriented diet advice.
+
+## How It Works
+
+1. **Food Scanner (Google Cloud Vision API Integration)**
+   - The user uploads a photo of their meal. 
+   - A mock integration of Google Cloud Vision detects ingredients, estimates macros (Calories, Protein, Carbs, Fat) and calculates a confidence score.
+   - The AI evaluates this against the user's goals (e.g., "weight loss") and gives a distinct "Eat", "Avoid", or "Moderate" verdict.
+
+2. **AI Dietitian (Google Gemini API Integration)**
+   - A conversational interface acts as a personal dietitian.
+   - Users can ask natural language questions ("Can I eat pizza tonight?").
+   - The AI responds based on the user's specific context and history.
+
+3. **Dashboard & Analytics**
+   - Overview of daily and weekly macros using beautifully animated charts (Recharts).
+   - "Health Score" gamification encourages streak maintenance.
+
+## Architecture & Code Quality
+- **Frontend**: Next.js (App Router), React, Tailwind CSS, Framer Motion for premium animations, Shadcn UI / Radix UI for accessibility.
+- **Backend structure**: The codebase separates concerns cleanly. All API interactions are kept inside `src/backend/services/`.
+- **Maintainability**: Used strict TypeScript for types (e.g., `FoodAnalysisResult`), centralized mock services to easily inject real API keys without refactoring frontend code.
+- **Accessibility**: ARIA tags are handled gracefully via Shadcn and Radix UI components (accessible dialogs, inputs, labels).
+
+## Security & Assumptions Made
+- **Security**: In this structure, API keys will be securely stored in `.env.local` and accessed exclusively server-side via Next.js API Routes (currently mocked on the client side for demonstration purposes).
+- **Assumptions**: 
+  - Since real API keys were not supplied initially, `Mock Services` are implemented in `src/backend/services/`. 
+  - When transitioning to production, we replace `chatWithNutritionistMock` with the actual Google AI SDK.
+
+## Running Locally
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Open http://localhost:3000
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
