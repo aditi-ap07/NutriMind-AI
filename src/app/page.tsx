@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Brain, Camera, HeartPulse, Leaf, Sparkles, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function LandingPage() {
@@ -20,7 +20,7 @@ export default function LandingPage() {
     hidden: { opacity: 0, y: 20 },
     visible: { 
       opacity: 1, y: 0,
-      transition: { duration: 0.5, ease: "easeOut" }
+      transition: { duration: 0.5 }
     }
   };
 
@@ -37,9 +37,9 @@ export default function LandingPage() {
           </div>
           <div className="flex items-center gap-4">
             <Link href="/dashboard" className="text-sm font-medium text-slate-600 hover:text-slate-900">Sign In</Link>
-            <Button asChild className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-6 shadow-md shadow-emerald-200 transition-all">
-              <Link href="/dashboard">Get Started</Link>
-            </Button>
+            <Link href="/dashboard" className={buttonVariants({ className: "bg-emerald-600 hover:bg-emerald-700 text-white rounded-full px-6 shadow-md shadow-emerald-200 transition-all" })}>
+              Get Started
+            </Link>
           </div>
         </div>
       </nav>
@@ -66,9 +66,9 @@ export default function LandingPage() {
                 Snap a photo of your food, and let our AI analyze its nutrition, evaluate your goals, and give you intelligent advice. Eat smarter, not harder.
               </motion.p>
               <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 h-14 text-base">
-                  <Link href="/dashboard">Start Scanning Free <ArrowRight className="ml-2 w-5 h-5" /></Link>
-                </Button>
+                <Link href="/dashboard" className={buttonVariants({ size: "lg", className: "bg-slate-900 text-white hover:bg-slate-800 rounded-full px-8 h-14 text-base" })}>
+                  Start Scanning Free <ArrowRight className="ml-2 w-5 h-5" />
+                </Link>
                 <Button variant="outline" size="lg" className="bg-white rounded-full px-8 h-14 text-base shadow-sm border-slate-200">
                   See How It Works
                 </Button>
